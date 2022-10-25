@@ -49,11 +49,6 @@ def home():
             return render_template('index.html', data = stock_data);
         except :
             return render_template('index.html', error = {'error' : 'API limit exceeded or Invalid Symbol.'});
-            # try:
-            #     note = data['Note'];
-            #     return render_template('index.html', error = {'error' : 'Connection limit exceeded, Please try later.'});
-            # except:
-            #     return render_template('index.html', error = {'error' : 'Invalid Symbol.'});
 
 
     return render_template('index.html');
