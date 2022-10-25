@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST">
+  <div class="form-group" style="margin: auto">
+    <label for="symbol">Enter a stock symbol</label>
+    <input id="symbol" name="symbol" type="text" class="form-control" placeholder="Stock Symbol">
+    <br>
+    <button type="submit" class="btn btn-primary">Get Info</button>
+  </div>
+</form>
+
+<br><br>
+
+{% if(data): %}
+<div class="card" style="margin:auto">
+  <div class="card-body">
+    <h5 class="card-title">Current date and time : </h5>
+    <h5 class="card-text">{{data.time}}</h5> <br><br>
+    <h5 class="card-title">Full name of the company : </h5>
+    <h5 class="card-text">{{data.full_name }} </h5> <br><br>
+    <h5 class="card-title">Stock price : </h5>
+    <h5 class="card-text">{{data.stock_price }} </h5> <br><br>
+    <h5 class="card-title">Value changes : <br>
+      {% if data.value_change < 0 %}
+      {{data.value_change}}
+      {% else %}
+      +{{data.value_change}} (+{{data.percentage_change}})
+      {% endif %}
+    </h5> <br><br>
+    <h5 class="card-title">Percentage changes : <br>
+      {% if data.value_change < 0 %}
+      {{data.percentage_change}}
+      {% else %}
+      +{{data.percentage_change}}
+      {% endif %}
+    </h5>
+    <br>
+  </div>
+</div>
+{% endif %}
+
+{% if(error): %}
+<div class="card" style="width: 24rem; margin:auto">
+  <div class="card-body">
+    <h5 class="card-text">{{error.error}}</h5>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
